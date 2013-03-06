@@ -6,6 +6,7 @@
     "jquery": "~1.9.1",
     "underscore": "~1.4.4",
     "eventemitter2": "~0.4.11",
+    "monologue": "postaljs/monologue.js",
     "requirejs": "~2.1.4",
     "requirejs-text": "~2.0.5"
   }
