@@ -142,6 +142,23 @@ define('extensions/reverse', {
 });
 ```
 
+
+## Using extensions
+
+Extensions can then be loaded by your app by referencing them with their module name.
+
+To make our `reverse` helper available in our app, run the following code:
+
+This will call the `initialize` function of our `reverse` extension.
+
+```js
+var app = Aura();
+app.use('extensions/reverse');
+app.start({ widgets: 'body' });
+```
+
+Calling `use` when your `app` is already started will throw an error.
+
 ## Emitting and listening for event notifications
 
 The Aura [Mediator](https://github.com/aurajs/aura/blob/master/lib/ext/mediator.js) allows widgets to communicate with each other by subscribing, unsubscribing and emitting sandboxed event notifications. The signatures for these three methods are:
@@ -172,18 +189,6 @@ define(['hbs!./stats'], function(template) {
   }
 });
 ```
-
-## Using extensions
-
-To make our `reverse` helper available in our app, run the following code:
-
-```js
-app.use('extensions/reverse');
-```
-
-This will call the `initialize` function of our `reverse` extension.
-
-Calling `use` when your `app` is already started will throw an error.
 
 ## Debugging
 
