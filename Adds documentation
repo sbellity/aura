@@ -19,15 +19,12 @@ define([
   * An Aura application is the glue between all the extensions
   * and components inside its instance.
   *
-  * Internally an Aura application wraps 4 important objects:
+  * Internally an Aura application wraps 3 important objects:
   *
   *- `config` is the object passed as the first param of the apps constructor
   *- `core`   is a container where the extensions add new features
   *- `sandbox` is an object that will be used as a prototype, to create fresh sandboxes to the components
-  *- `extensions` An instance of the ExtensionManager. It contains all the extensions that will be loaded in the app.
-  *     Extensions are here to provide features that will be used by the components...
-  *     They are meant to extend the apps' core & sandbox.
-  *     They also have access to the apps's config.
+  *
   *
   * Example of a creation of an Aura Application:
   *
