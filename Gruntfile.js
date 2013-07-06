@@ -10,6 +10,31 @@ module.exports = function (grunt) {
 
   var PORT = 8899;
 
+  var auraRequireBaseConfig = {
+    options: {
+      baseUrl: '.',
+      paths: {
+        aura: 'lib',
+        jquery: 'empty:',
+        underscore: 'empty:',
+        eventemitter: 'components/eventemitter2/lib/eventemitter2'
+      },
+      shim: {
+        underscore: {
+          exports: '_'
+        }
+      },
+      include: [
+        'aura/aura',
+        'aura/aura.extensions',
+        'aura/ext/debug',
+        'aura/ext/mediator',
+        'aura/ext/widgets'
+      ],
+      exclude: ['jquery']
+    }
+  };
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     connect: {
@@ -21,9 +46,8 @@ module.exports = function (grunt) {
       }
     },
     requirejs: {
-      compile: {
+      dev: grunt.util._.merge({}, auraRequireBaseConfig, {
         options: {
-          baseUrl: '.',
           optimize: 'none',
           paths: {
             aura: 'lib',
@@ -90,7 +114,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('spec', ['jshint', 'mocha']);
-  grunt.registerTask('build', ['connect', 'spec', 'requirejs','dox']);
-  grunt.registerTask('default', ['connect', 'spec', 'watch']);
+  grunt.registerTask('spec', ['jshint', 'connect', 'mocha']);
+  grunt.registerTask('build', ['spec', 'requirejs','dox']);
+  grunt.registerTask('default', ['spec', 'watch']);
 };
